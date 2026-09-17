@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM runpod/base:1.0.2-cuda1280-ubuntu2204
+FROM runpod/base:1.3.1-cuda1281-ubuntu2204
 
 ENV SYSTEM_VERSION_COMPAT=0 \
     OMP_NUM_THREADS=1 \
@@ -10,13 +10,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         ffmpeg \
         libglib2.0-0 \
         libgomp1 \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && ln -sf $(which python3) /usr/local/bin/python
 
 COPY requirements-serverless.txt /
-RUN python3.10 -m pip install --upgrade pip \
-    && python3.10 -m pip install --no-cache-dir -r /requirements-serverless.txt
+RUN python -m pip install --upgrade pip \
+    && python -m pip install --no-cache-dir -r /requirements-serverless.txt
 
 COPY . /facefusion
 WORKDIR /facefusion
 
-CMD ["python3.10", "-u", "handler.py"]
+CMD ["python", "-u", "handler.py"]

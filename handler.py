@@ -33,6 +33,7 @@ import base64
 import os
 import shutil
 import subprocess
+import sys
 import tempfile
 import urllib.request
 from typing import Any, Dict, List, Optional
@@ -137,7 +138,7 @@ def target_extension_is_image(target_path : str) -> bool:
 
 
 def build_command(job_input : Dict[str, Any], work_dir : str, target_path : str, source_paths : List[str], output_path : str) -> List[str]:
-	python = shutil.which('python3.10') or 'python3.10'
+	python = sys.executable
 	command =\
 	[
 		python,
