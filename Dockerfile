@@ -14,8 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && ln -sf $(which python3) /usr/local/bin/python
 
 COPY requirements-serverless.txt /
-RUN python -m pip install --upgrade pip \
-    && python -m pip install --no-cache-dir -r /requirements-serverless.txt
+RUN uv pip install --upgrade -r /requirements-serverless.txt --no-cache-dir --system
 
 COPY . /facefusion
 WORKDIR /facefusion
