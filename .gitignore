@@ -1,0 +1,12 @@
+__pycache__
+*.pyc
+.assets
+.claude
+.caches
+.idea
+.jobs
+.mypy_cache
+.vscode
+.venv
+venv
+facefusion-master.zip

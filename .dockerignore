@@ -1,0 +1,13 @@
+.git
+.github
+.assets
+.caches
+.idea
+.jobs
+.mypy_cache
+.vscode
+__pycache__
+*.pyc
+.venv
+venv
+facefusion-master.zip
